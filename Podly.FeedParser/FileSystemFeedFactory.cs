@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using Podly.FeedParser.Xml;
 
 namespace Podly.FeedParser
@@ -39,8 +40,8 @@ namespace Podly.FeedParser
         {
             if (!this.PingFeed(feeduri)) throw new MissingFeedException(string.Format("Was unable to open local XML file {0}", feeduri.LocalPath));
 
-            return FeedWorkerDelegate.BeginInvoke(feeduri, callback, new FeedTuple());
-
+            //return FeedWorkerDelegate.BeginInvoke(feeduri, callback, new FeedTuple());
+            throw new NotImplementedException("BeginDownloadXml hasn't been implemented for File IO, please use synchronous methods");
         }
 
         public override FeedTuple EndDownloadXml(IAsyncResult asyncResult)
