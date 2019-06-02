@@ -76,9 +76,9 @@ namespace Podly.FeedParser.Tests.SyndicationFeed
             var count2 = 0;
             foreach(var item in feed.Items)
             {
-                Assert.IsNotNullOrEmpty(item.Title);
+                Assert.False(string.IsNullOrEmpty(item.Title));
                 Assert.IsNotNull(item.Content);
-                Assert.IsNotNullOrEmpty(item.Link);
+                Assert.False(string.IsNullOrEmpty(item.Link));
                 count2++;
             }
 

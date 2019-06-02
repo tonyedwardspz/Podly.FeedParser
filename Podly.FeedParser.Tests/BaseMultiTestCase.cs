@@ -14,7 +14,7 @@ namespace Podly.FeedParser.Tests
         //Our list of test cases
         protected List<TestCaseData> TestCaseList;
 
-        public IEnumerable TestCases
+        /**public IEnumerable TestCases
         {
             get
             {
@@ -23,6 +23,6 @@ namespace Podly.FeedParser.Tests
                     yield return testcase;
                 }
             }
-        }
+        }**/
     }
 }

@@ -21,10 +21,10 @@ namespace Podly.FeedParser.Tests
          * without people having to dick around with .config files 
          * See: http://thedailywtf.com/Articles/Soft_Coding.aspx */
         #region Valid test case file path constants
-        private const string ValidFileSysAtomTestDirPath = @"..\..\Test Files\Valid\FileSys\Atom\";
-        private const string ValidFileSysRssTestDirPath = @"..\..\Test Files\Valid\FileSys\Rss\";
-        private const string ValidHttpRssTestFilePath = @"..\..\Test Files\Valid\Http\RSS.xml";
-        private const string ValidHttpAtomTestFilePath = @"..\..\Test Files\Valid\Http\Atom.xml";
+        private const string ValidFileSysAtomTestDirPath = @"..\..\..\Test Files\Valid\FileSys\Atom\";
+        private const string ValidFileSysRssTestDirPath = @"..\..\..\Test Files\Valid\FileSys\Rss\";
+        private const string ValidHttpRssTestFilePath = @"..\..\..\Test Files\Valid\Http\RSS.xml";
+        private const string ValidHttpAtomTestFilePath = @"..\..\..\Test Files\Valid\Http\Atom.xml";
         #endregion 
 
         public const string TestFileSearchPattern = @"*.xml";
@@ -50,8 +50,8 @@ namespace Podly.FeedParser.Tests
         }
         #endregion
 
-        private const string MissingFileSysTestFilePath = @"..\..\Test Files\Missing\FileSys\MissingFiles.xml";
-        private const string MissingHttpFilePath = @"..\..\Test Files\Missing\Http\MissingURLs.xml";
+        private const string MissingFileSysTestFilePath = @"..\..\..\Test Files\Missing\FileSys\MissingFiles.xml";
+        private const string MissingHttpFilePath = @"..\..\..\Test Files\Missing\Http\MissingURLs.xml";
 
         public static string MissingFileSysTestCases
         {

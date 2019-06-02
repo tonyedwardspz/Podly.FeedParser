@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define FRAMEWORK
+
+using System;
 using System.IO;
 using System.Net;
 using System.Reflection;
@@ -129,7 +131,8 @@ namespace Podly.FeedParser
         /// <returns></returns>
         public static bool SetUseUnsafeHeaderParsing(bool b)
         {
-            var a = Assembly.GetAssembly(typeof(System.Net.Configuration.SettingsSection));
+            return false; // TODO: Find .NET Standard equivalent?
+            /**var a = Assembly.GetAssembly(typeof(System.Net.Configuration.SettingsSection));
             if (a == null) return false;
 
             var t = a.GetType("System.Net.Configuration.SettingsSectionInternal");
@@ -144,7 +147,7 @@ namespace Podly.FeedParser
 
             f.SetValue(o, b);
 
-            return true;
+            return true;**/
         }
 #endif
         #endregion

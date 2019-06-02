@@ -1,10 +1,13 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Podly.FeedParser.Tests.SyndicationFeed.Valid
 {
     [TestFixture, Description("The other RSS tests are just used to ensure that errors aren't thrown during parsing. These test cases are used to ensure that the correct values are extracted from the XML parse.")]
     public class RssKnownValuesTests : BaseKnownValueTest
     {
+        public static IEnumerable<TestCaseData> TestCases = KnownValueTestLoader.LoadRssKnownValueTestCases();
+
         public RssKnownValuesTests() : base(new FileSystemFeedFactory(), KnownValueTestLoader.LoadRssKnownValueTestCases())
         {
         }

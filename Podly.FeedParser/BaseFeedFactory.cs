@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define FRAMEWORK
+
+using System;
 using System.Xml;
 using Podly.FeedParser.Xml;
 

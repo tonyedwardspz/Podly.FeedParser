@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
@@ -9,6 +10,8 @@ namespace Podly.FeedParser.Tests.AsyncTests
     {
         protected IFeedFactory Factory;
         protected FeedType FeedType;
+
+        public static IEnumerable<TestCaseData> TestCases = TestFileLoader.LoadValidRssTestCases(TestFileLoader.TestFileType.Http);
 
         public AsyncHttpFeedFactoryTests()
             : base(TestFileLoader.LoadValidRssTestCases(TestFileLoader.TestFileType.Http))

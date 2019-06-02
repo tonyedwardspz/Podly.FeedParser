@@ -1,4 +1,6 @@
-﻿using System;
+﻿#define FRAMEWORK
+
+using System;
 
 namespace Podly.FeedParser
 {

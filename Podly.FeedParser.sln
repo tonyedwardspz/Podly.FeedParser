@@ -1,49 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Podly.FeedParser", "Podly.FeedParser\Podly.FeedParser.csproj", "{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Podly.FeedParser", "Podly.FeedParser\Podly.FeedParser.csproj", "{0DABD071-80A9-4616-B318-290DB696BBFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Podly.FeedParser.Tests", "Podly.FeedParser.Tests\Podly.FeedParser.Tests.csproj", "{BD45F191-799A-464D-8391-6CDBCDBC9115}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Podly.FeedParser.Tests", "Podly.FeedParser.Tests\Podly.FeedParser.Tests.csproj", "{95102B9B-6705-4F48-8167-50027816C0A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|ARM = Debug|ARM
-		Debug|Mixed Platforms = Debug|Mixed Platforms
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|ARM = Release|ARM
-		Release|Mixed Platforms = Release|Mixed Platforms
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|ARM.ActiveCfg = Release|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{9276EC71-7DCA-4AAF-A4C2-F0B42964F4ED}.Release|x86.ActiveCfg = Release|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Release|ARM.ActiveCfg = Release|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{BD45F191-799A-464D-8391-6CDBCDBC9115}.Release|x86.ActiveCfg = Release|Any CPU
+		{0DABD071-80A9-4616-B318-290DB696BBFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DABD071-80A9-4616-B318-290DB696BBFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DABD071-80A9-4616-B318-290DB696BBFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DABD071-80A9-4616-B318-290DB696BBFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95102B9B-6705-4F48-8167-50027816C0A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95102B9B-6705-4F48-8167-50027816C0A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95102B9B-6705-4F48-8167-50027816C0A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95102B9B-6705-4F48-8167-50027816C0A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44912838-08E1-44B3-866E-04C2CD309759}
 	EndGlobalSection
 EndGlobal

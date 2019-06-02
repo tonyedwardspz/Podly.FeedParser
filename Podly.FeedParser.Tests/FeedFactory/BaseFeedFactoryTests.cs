@@ -32,7 +32,7 @@ namespace Podly.FeedParser.Tests.FeedFactory
                         string.Format("Expected type for this feed is {0}", typeof (T)));
         }
 
-        [Ignore]
+        [Ignore("Ignore due to unknown reasons")]
         [Test, TestCaseSource("TestCases"), Description("Tests whether or not the FeedFactory can successfully ping the feed's URI.")]
         public virtual void TestFactoryFeedUriPing(string rsslocation)
         {
