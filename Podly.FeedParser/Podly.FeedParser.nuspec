@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/FrederikBolding/Podly.FeedParser</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Podcast RSS feed parser</description>
-    <releaseNotes></releaseNotes>
+    <releaseNotes>Initial fork release</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>podcast rss parser atom podly</tags>
   </metadata>
