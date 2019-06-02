@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>Podly.FeedParserFork</PackageId>
+    <Version>0.1</Version>
+    <Authors>Frederik Bolding</Authors>
+    <Product>Podly.FeedParserFork</Product>
+    <Company />
+    <Copyright>Copyright 2019</Copyright>
+    <PackageReleaseNotes>Initial fork release</PackageReleaseNotes>
+    <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/FrederikBolding/Podly.FeedParser</PackageProjectUrl>
+    <PackageTags>Podcast RSS feed parser</PackageTags>
+    <Description>Forked version of Podly.FeedParser which works with .NET Standard 2.0</Description>
   </PropertyGroup>
 
   <ItemGroup>
