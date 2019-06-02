@@ -1,20 +1,17 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Podly.FeedParser</id>
-    <version>0.2.0</version>
-    <title>Podly.FeedParser</title>
-    <authors>Ryan Whitmire</authors>
-    <owners>Ryan Whitmire</owners>
+    <id>Podly.FeedParserFork</id>
+    <version>0.1.0</version>
+    <title>Podly.FeedParserFork</title>
+    <authors>Frederik Bolding</authors>
+    <owners>Frederik Bolding</owners>
     <licenseUrl>http://opensource.org/licenses/MS-PL</licenseUrl>
-    <projectUrl>https://github.com/rwhitmire/Podly.FeedParser</projectUrl>
+    <projectUrl>https://github.com/FrederikBolding/Podly.FeedParser</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Podcast RSS feed parser</description>
     <releaseNotes></releaseNotes>
-    <copyright>Copyright 2015</copyright>
+    <copyright>Copyright 2019</copyright>
     <tags>podcast rss parser atom podly</tags>
   </metadata>
-  <files>
-    <file src="bin\Release\*.*" target="lib\net45\" />
-  </files>
 </package>
