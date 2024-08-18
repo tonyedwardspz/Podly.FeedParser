@@ -50,6 +50,16 @@ namespace Podly.FeedParser
             get; set;
         }
 
+        public string Description
+        {
+            get; set;
+        }
+
+        public string Language
+        {
+            get; set;
+        }
+
         public FeedType FeedType
         {
             get; set;

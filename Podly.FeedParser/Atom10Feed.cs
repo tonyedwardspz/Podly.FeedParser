@@ -18,5 +18,23 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// The description of this atom feed. Currently not implemented.
+        /// </summary>
+        public string Description
+        {
+            get => string.Empty;
+            set => value = string.Empty;
+        }
+
+        /// <summary>
+        /// The language this atom feed is encoded in. Currently not implemented.
+        /// </summary>
+        public string Language
+        {
+            get => string.Empty;
+            set => value = string.Empty;
+        }
     }
 }
