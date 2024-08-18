@@ -38,14 +38,19 @@ namespace Podly.FeedParser
         string Generator { get; }
 
         /// <summary>
-        /// The description of this syndication feed. Not implemented in Atom 1.0.
+        /// The description of this syndication feed. Not implemented in Atom.
         /// </summary>
         string Description { get; }
 
         /// <summary>
-        /// The language this syndication feed is encoded in. Not implemented in Atom 1.0.
+        /// The language this syndication feed is encoded in. Not implemented in Atom.
         /// </summary>
         string Language { get; }
+
+        /// <summary>
+        /// The image URL of this syndication feed. Not implemented in Atom.
+        /// </summary>
+        string CoverImageUrl { get; }
 
         /// <summary>
         /// The type of syndication feed.

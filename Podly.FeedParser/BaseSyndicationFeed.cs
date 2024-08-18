@@ -60,6 +60,11 @@ namespace Podly.FeedParser
             get; set;
         }
 
+        public string CoverImageUrl 
+        { 
+            get; set; 
+        }
+
         public FeedType FeedType
         {
             get; set;

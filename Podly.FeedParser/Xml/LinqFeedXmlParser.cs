@@ -161,6 +161,9 @@ namespace Podly.FeedParser.Xml
 
             var languageNode = channel.Element("language");
             rssFeed.Language = languageNode == null ? string.Empty : languageNode.Value;
+
+            var imageNode = channel.Element("image")?.Element("url")?.Value;
+            rssFeed.CoverImageUrl = imageNode == null ? string.Empty : imageNode;
         }
 
         private void ParseRss20Items(Rss20Feed rssFeed, string xml, int maxItems)

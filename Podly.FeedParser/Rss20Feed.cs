@@ -18,21 +18,5 @@
         }
 
         #endregion
-
-        /// <summary>
-        /// The description of this RSS feed.
-        /// </summary>
-        public string Description
-        {
-            get; set;
-        }
-
-        /// <summary>
-        /// The language this RSS feed is encoded in.
-        /// </summary>
-        public string Language
-        {
-            get; set;
-        }
     }
 }

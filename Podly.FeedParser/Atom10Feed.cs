@@ -36,5 +36,15 @@
             get => string.Empty;
             set => value = string.Empty;
         }
+
+
+        /// <summary>
+        /// The image URL of this RSS feed. Currently not implemented.
+        /// </summary>
+        public string CoverImageUrl 
+        { 
+            get => string.Empty;
+            set => value = string.Empty;
+        }
     }
 }
