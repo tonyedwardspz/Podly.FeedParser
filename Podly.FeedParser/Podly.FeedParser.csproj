@@ -1,13 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;net8.0-maccatalyst</TargetFrameworks>
+
     <PackageId>Podly.FeedParserFork</PackageId>
     <Version>0.1</Version>
+
     <Authors>Frederik Bolding</Authors>
     <Product>Podly.FeedParserFork</Product>
     <Company />
     <Copyright>Copyright 2019</Copyright>
+
     <PackageReleaseNotes>Initial fork release</PackageReleaseNotes>
     <PackageLicenseExpression>MS-PL</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/FrederikBolding/Podly.FeedParser</PackageProjectUrl>
@@ -18,5 +21,9 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+
+  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))"> 
+    <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>     
+  </PropertyGroup>
 
 </Project>
