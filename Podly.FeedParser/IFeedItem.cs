@@ -44,5 +44,15 @@ namespace Podly.FeedParser
         /// A string of categories used to classify the syndication feed entry.
         /// </summary>
         IList<string> Categories { get; }
+
+        /// <summary>
+        /// The URL of the podcast episode cover
+        /// </summary>
+        string Cover { get; set; }
+
+        /// <summary>
+        /// The episode number of the podcast episode
+        /// </summary>
+        string  EpisodeNumber { get; set; }
     }
 }

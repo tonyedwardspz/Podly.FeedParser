@@ -192,19 +192,32 @@ namespace Podly.FeedParser.Xml
             var linkNode = itemNode.Element("link");
             var enclosureNode = itemNode.Element("enclosure");
 
+            var itunesAuthorNode = itemNode.Element(XName.Get("author", "http://www.itunes.com/dtds/podcast-1.0.dtd"));
+            var itunesImageNode = itemNode.Element(XName.Get("image", "http://www.itunes.com/dtds/podcast-1.0.dtd"));
+            var itunesDurationNode = itemNode.Element(XName.Get("duration", "http://www.itunes.com/dtds/podcast-1.0.dtd"));
+            var itunesEpisodeNode = itemNode.Element(XName.Get("episode", "http://www.itunes.com/dtds/podcast-1.0.dtd"));
+
             Rss20FeedItem item = CreateRss20FeedItem();
 
             item.Title = titleNode == null ? string.Empty : titleNode.Value;
             item.DatePublished = datePublishedNode == null ? DateTime.UtcNow : SafeGetDate(datePublishedNode.Value);
+
             item.Author = authorNode == null ? string.Empty : authorNode.Value;
+            item.Author = itunesAuthorNode == null ? item.Author : itunesAuthorNode.Value;
+
             item.Comments = commentsNode == null ? string.Empty : commentsNode.Value;
             item.Id = idNode == null ? string.Empty : idNode.Value;
             item.Content = contentNode == null ? string.Empty : contentNode.Value;
             item.Link = linkNode == null ? string.Empty : linkNode.Value;
+            item.Cover = itunesImageNode?.Attribute("href")?.Value ?? string.Empty;
 
             item.MediaUrl = SafeGetAttribute(enclosureNode, "url");
+
             item.MediaLength = SafeGetAttribute(enclosureNode, "length");
+            item.MediaLength = item.MediaLength == null ? string.Empty : itunesDurationNode.Value;
             item.MediaType = SafeGetAttribute(enclosureNode, "type");
+            
+            item.EpisodeNumber = itunesEpisodeNode == null ? string.Empty : itunesEpisodeNode.Value;
 
             var categoryNodes = itemNode.Elements("category");
             foreach (var categoryNode in categoryNodes)

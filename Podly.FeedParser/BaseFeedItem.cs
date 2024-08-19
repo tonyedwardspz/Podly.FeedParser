@@ -72,6 +72,8 @@ namespace Podly.FeedParser
         public string MediaUrl { get; set; }
         public string MediaLength { get; set; }
         public string MediaType { get; set; }
+        public string Cover { get; set ; }
+        public string EpisodeNumber { get; set ; }
 
         #endregion
     }

@@ -37,7 +37,6 @@
             set => value = string.Empty;
         }
 
-
         /// <summary>
         /// The image URL of this RSS feed. Currently not implemented.
         /// </summary>
