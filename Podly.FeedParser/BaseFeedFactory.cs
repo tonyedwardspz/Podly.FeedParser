@@ -1,6 +1,7 @@
 ﻿#define FRAMEWORK
 
 using System;
+using System.Threading.Tasks;
 using System.Xml;
 using Podly.FeedParser.Xml;
 
@@ -36,15 +37,12 @@ namespace Podly.FeedParser
 
 #if FRAMEWORK
 
-        public abstract bool PingFeed(Uri feeduri);
+        public abstract Task<bool> PingFeed(Uri feeduri);
 
 
-        public abstract string DownloadXml(Uri feeduri);
+        public abstract Task<string> DownloadXml(Uri feeduri);
 #endif
 
-        public abstract IAsyncResult BeginDownloadXml(Uri feeduri, AsyncCallback callback);
-
-        public abstract FeedTuple EndDownloadXml(IAsyncResult asyncResult);
 
         #endregion
 
@@ -55,8 +53,8 @@ namespace Podly.FeedParser
         public IFeed CreateFeed(Uri feeduri)
         {
             var feedxml = this.DownloadXml(feeduri);
-            var feedtype = this.CheckFeedType(feedxml);
-            return this.CreateFeed(feeduri, feedtype, feedxml);
+            var feedtype = this.CheckFeedType(feedxml.Result);
+            return this.CreateFeed(feeduri, feedtype, feedxml.Result);
 
         }
 
@@ -65,15 +63,15 @@ namespace Podly.FeedParser
         public IFeed CreateFeed(Uri feeduri, int maxItems)
         {
             var feedxml = this.DownloadXml(feeduri);
-            var feedtype = this.CheckFeedType(feedxml);
-            return this.CreateFeed(feeduri, feedtype, feedxml, maxItems);
+            var feedtype = this.CheckFeedType(feedxml.Result);
+            return this.CreateFeed(feeduri, feedtype, feedxml.Result, maxItems);
 
         }
 
         public IFeed CreateFeed(Uri feeduri, FeedType feedtype)
         {
             var feedxml = this.DownloadXml(feeduri);
-            return this.CreateFeed(feeduri, feedtype, feedxml);
+            return this.CreateFeed(feeduri, feedtype, feedxml.Result);
         }
 
 
@@ -81,16 +79,7 @@ namespace Podly.FeedParser
         {
             try
             {
-                IFeed returnFeed;
-                if (feedtype == FeedType.Atom10)
-                {
-                    returnFeed = _instanceProvider.CreateAtom10Feed(feeduri.OriginalString);
-                }
-                else
-                {
-                    returnFeed = _instanceProvider.CreateRss20Feed(feeduri.OriginalString);
-                }
-
+                IFeed returnFeed = _instanceProvider.CreateRss20Feed(feeduri.OriginalString);
                 try
                 {
                     _parser.ParseFeed(returnFeed, feedxml, maxItems);
@@ -116,7 +105,7 @@ namespace Podly.FeedParser
             try
             {
                 var strXmlContent = this.DownloadXml(feeduri);
-                return this.CheckFeedType(strXmlContent);
+                return this.CheckFeedType(strXmlContent.Result);
             }
             catch (MissingFeedException)
             {
@@ -144,22 +133,5 @@ namespace Podly.FeedParser
         }
 
         #endregion
-
-        #region Asynchronous methods
-
-        public IAsyncResult BeginCreateFeed(Uri feeduri, AsyncCallback callback)
-        {
-            return BeginDownloadXml(feeduri, callback);
-        }
-
-        public IFeed EndCreateFeed(IAsyncResult asyncResult)
-        {
-            var feedData = EndDownloadXml(asyncResult);
-            var feedType = CheckFeedType(feedData.FeedContent);
-            return CreateFeed(feedData.FeedUri, feedType, feedData.FeedContent);
-        }
-
-        #endregion
-
     }
 }

@@ -7,7 +7,6 @@
     /// </summary>
     public enum FeedType
     {
-        Rss20 = 1,
-        Atom10 = 2
+        Rss20 = 1
     }
 }

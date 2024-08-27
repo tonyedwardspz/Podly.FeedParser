@@ -5,7 +5,6 @@ using System.Xml.Serialization;
 namespace Podly.FeedParser
 {
     [XmlInclude(typeof(Rss20FeedItem))]
-    [XmlInclude(typeof(Atom10FeedItem))]
     public abstract class BaseSyndicationFeed : IFeed
     {
         #region Constructors

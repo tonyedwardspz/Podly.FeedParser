@@ -6,11 +6,6 @@
         {
             return new Rss20Feed(feeduri);
         }
-
-        public Atom10Feed CreateAtom10Feed(string feeduri)
-        {
-            return new Atom10Feed(feeduri);
-        }
     }
 }
 

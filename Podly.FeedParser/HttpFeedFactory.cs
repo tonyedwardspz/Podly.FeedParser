@@ -3,7 +3,9 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 using Podly.FeedParser.Xml;
 
 namespace Podly.FeedParser
@@ -30,42 +32,78 @@ namespace Podly.FeedParser
 
 #if FRAMEWORK
 
-        public override bool PingFeed(Uri feeduri)
+        //public override bool PingFeed(Uri feeduri)
+        //{
+        //    try
+        //    {
+        //        var request = WebRequest.Create(feeduri) as HttpWebRequest;
+        //        using (var response = request.GetResponse() as HttpWebResponse)
+        //        {
+        //            return IsValidXmlReponse(response);
+        //        }
+        //    }
+        //    /* Usually this means we encountered a 404 / 501 error of some sort. */
+        //    catch (WebException)
+        //    {
+        //        return false;
+        //    }
+        //}
+
+        //public override string DownloadXml(Uri feeduri)
+        //{
+        //    try
+        //    {
+        //        var request = WebRequest.Create(feeduri) as HttpWebRequest;
+        //        request.KeepAlive = false;
+        //        string responseXml;
+
+        //        using (var response = request.GetResponse() as HttpWebResponse)
+        //        {
+        //            responseXml = GetResponseXml(response);
+        //        }
+
+        //        return responseXml;
+        //    }
+        //    /* Usually this means we encountered a 404 / 501 error of some sort. */
+        //    catch (WebException ex)
+        //    {
+        //        throw new MissingFeedException(string.Format("Was unable to open web-hosted file {0}", feeduri.LocalPath), ex);
+        //    }
+        //}
+
+        public override async Task<bool> PingFeed(Uri feedUri)
         {
             try
             {
-                var request = WebRequest.Create(feeduri) as HttpWebRequest;
-                using (var response = request.GetResponse() as HttpWebResponse)
+                using (var client = new HttpClient())
                 {
+                    HttpResponseMessage response = await client.GetAsync(feedUri);
                     return IsValidXmlReponse(response);
                 }
             }
-            /* Usually this means we encountered a 404 / 501 error of some sort. */
-            catch (WebException)
+            catch (HttpRequestException)
             {
+                // Usually this means we encountered a 404 / 501 error of some sort.
                 return false;
             }
         }
 
-        public override string DownloadXml(Uri feeduri)
+        public override async Task<string> DownloadXml(Uri feedUri)
         {
             try
             {
-                var request = WebRequest.Create(feeduri) as HttpWebRequest;
-                request.KeepAlive = false;
-                string responseXml;
-
-                using (var response = request.GetResponse() as HttpWebResponse)
+                using (var client = new HttpClient())
                 {
-                    responseXml = GetResponseXml(response);
-                }
+                    HttpResponseMessage response = await client.GetAsync(feedUri);
+                    response.EnsureSuccessStatusCode();
 
-                return responseXml;
+                    string responseXml = await response.Content.ReadAsStringAsync();
+                    return responseXml;
+                }
             }
-            /* Usually this means we encountered a 404 / 501 error of some sort. */
-            catch (WebException ex)
+            catch (HttpRequestException ex)
             {
-                throw new MissingFeedException(string.Format("Was unable to open web-hosted file {0}", feeduri.LocalPath), ex);
+                throw new MissingFeedException($"Was unable to open web-hosted file {feedUri.LocalPath}", ex);
             }
         }
 
@@ -75,37 +113,6 @@ namespace Podly.FeedParser
             var reader = new StreamReader(response.GetResponseStream());
             var responseXml = reader.ReadToEnd();
             return responseXml;
-        }
-
-        public override IAsyncResult BeginDownloadXml(Uri feeduri, AsyncCallback callback)
-        {
-            try
-            {
-                var request = WebRequest.Create(feeduri) as HttpWebRequest;
-                var requestState = new AsyncFeedRequestState { FeedUri = feeduri, OriginalRequest = request };
-                return request.BeginGetResponse(callback, requestState);
-            }
-            /* Usually this means we encountered a 404 / 501 error of some sort. */
-            catch (WebException ex)
-            {
-                throw new MissingFeedException(string.Format("Was unable to open web-hosted file {0}", feeduri.LocalPath), ex);
-            }
-        }
-
-        public override FeedTuple EndDownloadXml(IAsyncResult asyncResult)
-        {
-            try
-            {
-                var requestState = asyncResult.AsyncState as AsyncFeedRequestState;
-                var response = requestState.OriginalRequest.EndGetResponse(asyncResult) as HttpWebResponse;
-                var responseXml = GetResponseXml(response);
-
-                return new FeedTuple { FeedContent = responseXml, FeedUri = requestState.FeedUri };
-            }
-            catch (WebException ex)
-            {
-                throw new MissingFeedException("Was unable to open web-hosted file {0}", ex);
-            }
         }
 
         #region useUnsafeHeaderParsing configuration hack
@@ -152,11 +159,11 @@ namespace Podly.FeedParser
 #endif
         #endregion
 
-        private static bool IsValidXmlReponse(HttpWebResponse response)
+        private static bool IsValidXmlReponse(HttpResponseMessage response)
         {
             return response != null &&
                    response.StatusCode == HttpStatusCode.OK &&
-                   response.ContentType.Contains("xml");
+                   response.Content.Headers.ContentType.MediaType.Contains("xml");
         }
     }
 }

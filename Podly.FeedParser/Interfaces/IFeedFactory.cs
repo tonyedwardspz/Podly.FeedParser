@@ -1,6 +1,7 @@
 ﻿#define FRAMEWORK
 
 using System;
+using System.Threading.Tasks;
 
 namespace Podly.FeedParser
 {
@@ -19,7 +20,7 @@ namespace Podly.FeedParser
         /// </summary>
         /// <param name="feeduri">The Uri of the feed to ping.</param>
         /// <returns>True if the feed was successfully pinged, false otherwise.</returns>
-        bool PingFeed(Uri feeduri);
+        Task<bool> PingFeed(Uri feeduri);
 
 #endif
 
@@ -51,22 +52,6 @@ namespace Podly.FeedParser
         /// <returns>A new ISyndicationFeed object of [feedtype].</returns>
         IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml, int maxItems = 9999);
 
-        /// <summary>
-        /// Asynchronous operation to begin creating a new feed from a source Uri.
-        /// </summary>
-        /// <param name="feeduri">The Uri of the feed to be parsed.</param>
-        /// <param name="callback">A callback function</param>
-        /// <returns>A new ISynidcationFeed object. The exact type returned depends on the type of feed detected.</returns>
-        IAsyncResult BeginCreateFeed(Uri feeduri, AsyncCallback callback);
-
-        /// <summary>
-        /// Creates a new ISyndicationFeed class as the result of the end of an asynchronous operation.
-        /// The original URI is used as the unique identifier for the feed.
-        /// </summary>
-        /// <param name="asyncResult">The results of the original asynchronous method call.</param>
-        /// <returns>A new ISyndicationFeed object</returns>
-        IFeed EndCreateFeed(IAsyncResult asyncResult);
-
 #if FRAMEWORK
 
         /// <summary>
@@ -74,24 +59,9 @@ namespace Podly.FeedParser
         /// </summary>
         /// <param name="feeduri">The Uri of the feed to parse.</param>
         /// <returns>A string containing the XML document in its entirety.</returns>
-        string DownloadXml(Uri feeduri);
+        Task<string> DownloadXml(Uri feeduri);
 
 #endif
-
-        /// <summary>
-        /// Begins an asychronous request to the XML content of the feed and returns it as a string.
-        /// </summary>
-        /// <param name="feeduri">The Uri of the feed to parse.</param>
-        /// <param name="callback">A callback function.</param>
-        /// <returns>A string containing the XML document in its entirety.</returns>
-        IAsyncResult BeginDownloadXml(Uri feeduri, AsyncCallback callback);
-
-        /// <summary>
-        /// Returns the XML content from the end of an asynchronous request.
-        /// </summary>
-        /// <param name="asyncResult">The asynchronous result passed in via a callback</param>
-        /// <returns>The feed's XML at the specified Uri</returns>
-        FeedTuple EndDownloadXml(IAsyncResult asyncResult);
 
 #if FRAMEWORK
         /// <summary>
