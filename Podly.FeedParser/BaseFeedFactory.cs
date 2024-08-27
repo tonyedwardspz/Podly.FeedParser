@@ -1,6 +1,4 @@
-﻿#define FRAMEWORK
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using System.Xml;
 using Podly.FeedParser.Xml;
@@ -35,13 +33,10 @@ namespace Podly.FeedParser
 
         #region abstract IFeedFactory members
 
-#if FRAMEWORK
-
         public abstract Task<bool> PingFeed(Uri feeduri);
 
 
         public abstract Task<string> DownloadXml(Uri feeduri);
-#endif
 
 
         #endregion
@@ -57,8 +52,6 @@ namespace Podly.FeedParser
             return this.CreateFeed(feeduri, feedtype, feedxml.Result);
 
         }
-
-
 
         public IFeed CreateFeed(Uri feeduri, int maxItems)
         {
@@ -98,8 +91,6 @@ namespace Podly.FeedParser
             }
         }
 
-#if FRAMEWORK
-
         public FeedType CheckFeedType(Uri feeduri)
         {
             try
@@ -117,8 +108,6 @@ namespace Podly.FeedParser
                     string.Format("Unable to parse feedtype for feed at {0}", feeduri.AbsoluteUri), ex);
             }
         }
-
-#endif
 
         public FeedType CheckFeedType(string feedxml)
         {

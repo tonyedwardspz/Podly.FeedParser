@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net8.0-maccatalyst</TargetFrameworks>
+    <TargetFramework>net8.0</TargetFramework>
 
     <PackageId>Podly.FeedParserFork</PackageId>
     <Version>0.1</Version>
@@ -28,8 +28,5 @@
     <None Remove="Models\" />
     <None Remove="Interfaces\" />
   </ItemGroup>
-  <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))"> 
-    <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>     
-  </PropertyGroup>
-
+  
 </Project>

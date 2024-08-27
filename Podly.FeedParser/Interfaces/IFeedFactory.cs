@@ -1,6 +1,4 @@
-﻿#define FRAMEWORK
-
-using System;
+﻿using System;
 using System.Threading.Tasks;
 
 namespace Podly.FeedParser
@@ -13,16 +11,12 @@ namespace Podly.FeedParser
     public partial interface IFeedFactory
     {
 
-#if FRAMEWORK
-
         /// <summary>
         /// Pings the feed to verify that it actually exists.
         /// </summary>
         /// <param name="feeduri">The Uri of the feed to ping.</param>
         /// <returns>True if the feed was successfully pinged, false otherwise.</returns>
         Task<bool> PingFeed(Uri feeduri);
-
-#endif
 
         /// <summary>
         /// Creates a new ISyndicationFeed class parsed from the provided Uri.
@@ -52,8 +46,6 @@ namespace Podly.FeedParser
         /// <returns>A new ISyndicationFeed object of [feedtype].</returns>
         IFeed CreateFeed(Uri feeduri, FeedType feedtype, string feedxml, int maxItems = 9999);
 
-#if FRAMEWORK
-
         /// <summary>
         /// Downloads the XML content of the feed and returns it as a string.
         /// </summary>
@@ -61,9 +53,6 @@ namespace Podly.FeedParser
         /// <returns>A string containing the XML document in its entirety.</returns>
         Task<string> DownloadXml(Uri feeduri);
 
-#endif
-
-#if FRAMEWORK
         /// <summary>
         /// Quickly parses the top-most XML to determine what type of syndication feed the feed hosted
         /// at [feeduri] is.
@@ -71,7 +60,6 @@ namespace Podly.FeedParser
         /// <param name="feeduri">The Uri of the feed to parse.</param>
         /// <returns>The type of feed located at [feeduri].</returns>
         FeedType CheckFeedType(Uri feeduri);
-#endif
 
         /// <summary>
         /// Quickly parses the top-most XML to determine what type of syndication feed [feedxml] is.
