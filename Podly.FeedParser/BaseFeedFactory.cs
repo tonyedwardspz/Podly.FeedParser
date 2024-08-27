@@ -54,15 +54,7 @@ namespace Podly.FeedParser
 
         public IFeed CreateFeed(Uri feeduri)
         {
-#if FRAMEWORK
             var feedxml = this.DownloadXml(feeduri);
-#endif
-
-#if SILVERLIGHT || WINDOWS_PHONE
-            var feedXmlResult = this.BeginDownloadXml(feeduri, null);
-            var feedxml = this.EndDownloadXml(feedXmlResult).FeedContent;
-#endif
-
             var feedtype = this.CheckFeedType(feedxml);
             return this.CreateFeed(feeduri, feedtype, feedxml);
 
@@ -80,15 +72,7 @@ namespace Podly.FeedParser
 
         public IFeed CreateFeed(Uri feeduri, FeedType feedtype)
         {
-#if FRAMEWORK
             var feedxml = this.DownloadXml(feeduri);
-#endif
-
-#if SILVERLIGHT || WINDOWS_PHONE
-            var feedXmlResult = this.BeginDownloadXml(feeduri, null);
-            var feedxml = this.EndDownloadXml(feedXmlResult).FeedContent;
-#endif
-
             return this.CreateFeed(feeduri, feedtype, feedxml);
         }
 

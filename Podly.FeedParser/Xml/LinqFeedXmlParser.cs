@@ -164,7 +164,6 @@ namespace Podly.FeedParser.Xml
 
             var imageNode = channel.Element("image")?.Element("url")?.Value;
             if (imageNode == null) {
-                // <itunes:image href="http://ichef.bbci.co.uk/images/ic/3000x3000/p0g4n90t.jpg"/>
                 imageNode = channel.Element(XName.Get("image", "http://www.itunes.com/dtds/podcast-1.0.dtd"))?.Attribute("href")?.Value;
             }
             rssFeed.CoverImageUrl = imageNode == null ? string.Empty : imageNode;

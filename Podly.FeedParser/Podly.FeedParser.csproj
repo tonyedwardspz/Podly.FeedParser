@@ -20,8 +20,14 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+    <Folder Include="Models\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Models\" />
+    <None Remove="Interfaces\" />
+  </ItemGroup>
   <PropertyGroup Condition="$(TargetFramework.Contains('-maccatalyst'))"> 
     <RuntimeIdentifier>maccatalyst-arm64</RuntimeIdentifier>     
   </PropertyGroup>
