@@ -43,7 +43,19 @@ namespace Podly.FeedParser {
             readOpmlNodes(doc);
         }
 
-          ///<summary>
+        ///<summary>
+        /// Constructor
+        ///</summary>
+        /// <param name="location">Location of the OPML file</param>
+        /// <param name="outputFilePath">The output filepath to save the OPML file to</param>
+        public Opml(string location, string outputFilePath) 
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(location);
+            readOpmlNodes(doc);
+        }
+
+        ///<summary>
         /// Constructor
         ///</summary>
         /// <param name="doc">XMLDocument of the OPML</param>

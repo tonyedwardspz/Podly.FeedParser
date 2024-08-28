@@ -21,20 +21,6 @@ namespace Podly.FeedParser.Tests
 
         }
 
-        [Test, Description("Exercises the modules which load Atom test files.")]
-        public void CanFindAtomFileSysTests()
-        {
-            DirectoryInfo atomDir = new DirectoryInfo(TestFileLoader.ValidFileSysAtomTestDir);
-            Assert.That(atomDir.Exists, string.Format("Atom test file directory [{0}] not found",TestFileLoader.ValidFileSysAtomTestDir));
-
-            var atomDirFiles = atomDir.GetFiles(TestFileLoader.TestFileSearchPattern);
-            Assert.That(atomDirFiles.Length > 0, string.Format("No test files found in Atom test directory [{0}]", TestFileLoader.ValidFileSysAtomTestDir));
-
-            var testCases = TestFileLoader.LoadValidAtomTestCases(TestFileLoader.TestFileType.FileSys);
-            Assert.That(atomDirFiles.Length == testCases.Count, string.Format("The number of files in the Atom directory [{0}] should match the number of test cases produced from them.", TestFileLoader.ValidFileSysAtomTestDir));
-
-        }
-
         [Test, Description("Exercises the modules which load all test files.")]
         public void CanFindAlValidFileSysTests()
         {

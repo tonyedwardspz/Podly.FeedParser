@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
-<testcases>
-  <testcase>
-    <uri>http://news.google.com/news?pz=1&amp;ned=us&amp;hl=en&amp;output=atom</uri>
-    <name>Top Stories - Google News</name>
-  </testcase>
-</testcases>

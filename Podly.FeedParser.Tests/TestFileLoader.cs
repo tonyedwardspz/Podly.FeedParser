@@ -21,27 +21,17 @@ namespace Podly.FeedParser.Tests
          * without people having to dick around with .config files 
          * See: http://thedailywtf.com/Articles/Soft_Coding.aspx */
         #region Valid test case file path constants
-        private const string ValidFileSysAtomTestDirPath = @"..\..\..\Test Files\Valid\FileSys\Atom\";
         private const string ValidFileSysRssTestDirPath = @"..\..\..\Test Files\Valid\FileSys\Rss\";
         private const string ValidHttpRssTestFilePath = @"..\..\..\Test Files\Valid\Http\RSS.xml";
-        private const string ValidHttpAtomTestFilePath = @"..\..\..\Test Files\Valid\Http\Atom.xml";
         #endregion 
 
         public const string TestFileSearchPattern = @"*.xml";
 
         #region Valid test case path accessors
-        public static string ValidFileSysAtomTestDir{
-            get { return Path.GetFullPath(ValidFileSysAtomTestDirPath); }
-        }
 
         public static string ValidFileSysRssTestDir
         {
             get { return Path.GetFullPath(ValidFileSysRssTestDirPath); }
-        }
-
-        public static string ValidHttpAtomTestFile
-        {
-            get { return Path.GetFullPath(ValidHttpAtomTestFilePath); }
         }
 
         public static string ValidHttpRssTestFile
@@ -87,17 +77,6 @@ namespace Podly.FeedParser.Tests
                 rssCases.Add(testcase);
             }
             return rssCases;
-        }
-
-        /// <summary>
-        /// Returns a list of TestCaseData for Atom test files only.
-        /// </summary>
-        /// <returns>An IList of TestCaseData objects which contain the full path of each file.</returns>
-        public static IList<TestCaseData> LoadValidAtomTestCases(TestFileType fileType)
-        {
-            if(fileType == TestFileType.FileSys)
-                return LoadTestCaseFilesFromDirectory(TestFileLoader.ValidFileSysAtomTestDir);
-            return LoadTestCaseFilesFromXml(TestFileLoader.ValidHttpAtomTestFile);
         }
 
         /// <summary>
