@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -77,7 +77,11 @@ namespace Podly.FeedParser.Xml
             var feedItemNodes = document.Root.Element("channel").Elements("item").Take(maxItems);
             foreach (var item in feedItemNodes)
             {
-                rssFeed.Items.Add(ParseRss20SingleItem(item));
+                var ep = ParseRss20SingleItem(item);
+                if (ep.MediaUrl != null)
+                {
+                    rssFeed.Items.Add(ep);
+                }
             }
         }
 
