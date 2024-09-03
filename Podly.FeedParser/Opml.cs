@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Text;
@@ -40,9 +41,16 @@ namespace Podly.FeedParser {
         /// <param name="location">Location of the OPML file</param>
         public Opml(string location) 
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(location);
-            readOpmlNodes(doc);
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(location);
+                readOpmlNodes(doc);
+            } catch (Exception e)
+            {
+                //Debug.WriteLine(e.Message);
+            }
+            
         }
 
         ///<summary>
