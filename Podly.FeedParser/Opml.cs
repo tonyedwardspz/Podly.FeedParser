@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Xml;
 
@@ -48,12 +50,42 @@ namespace Podly.FeedParser {
         ///</summary>
         /// <param name="location">Location of the OPML file</param>
         /// <param name="outputFilePath">The output filepath to save the OPML file to</param>
-        public Opml(string location, string outputFilePath) 
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(location);
-            readOpmlNodes(doc);
-        }
+        // public Opml(string inputFilePath, string outputFilePath) 
+        // {
+        //     if (File.Exists(outputFilePath))
+		// 	    File.Delete(outputFilePath);
+
+            
+        //     // if the file is on the file system, copy it to the output file path
+        //     if (File.Exists(inputFilePath))
+        //     {
+        //         File.WriteAllText(outputFilePath, File.ReadAllText(inputFilePath));
+        //         inputFilePath = outputFilePath;
+        //     } else {
+        //         // check if the input file path was a url, and download the file using a http client if it is
+        //         if (inputFilePath.StartsWith("http"))
+        //         {
+        //             using (var client = new HttpClient())
+        //             {
+        //                 using (var response = client.GetAsync(inputFilePath).Result)
+        //                 {
+        //                     using (var stream = response.Content.ReadAsStreamAsync().Result)
+        //                     {
+        //                         using (var destStream = File.Create(outputFilePath))
+        //                         {
+        //                             stream.CopyTo(destStream);
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //             inputFilePath = outputFilePath;
+        //         }
+        //     }
+
+        //     XmlDocument doc = new XmlDocument();
+        //     doc.Load(inputFilePath);
+        //     readOpmlNodes(doc);
+        // }
 
         ///<summary>
         /// Constructor
