@@ -69,11 +69,12 @@ namespace Podly.FeedParser.Xml
                 var languageNode = channel.Element("language");
                 rssFeed.Language = languageNode == null ? string.Empty : languageNode.Value;
 
+                // Get the cover image, replacing the feed default with itunes image if available.
+                // Some podcasts have a website icon in the feed default where there should be a cover image.
                 var imageNode = channel.Element("image")?.Element("url")?.Value;
-                if (imageNode == null) {
-                    imageNode = channel.Element(XName.Get("image", "http://www.itunes.com/dtds/podcast-1.0.dtd"))?.Attribute("href")?.Value;
-                }
                 rssFeed.CoverImageUrl = imageNode == null ? string.Empty : imageNode;
+                var itunesImageNode = channel.Element(XName.Get("image", "http://www.itunes.com/dtds/podcast-1.0.dtd"))?.Attribute("href")?.Value;
+                rssFeed.CoverImageUrl = itunesImageNode == null ? rssFeed.CoverImageUrl : itunesImageNode;
 
             } catch (Exception e)
             {
