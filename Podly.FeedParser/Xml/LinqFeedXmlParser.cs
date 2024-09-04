@@ -136,6 +136,7 @@ namespace Podly.FeedParser.Xml
 
                 item.MediaLength = SafeGetAttribute(enclosureNode, "length");
                 item.MediaLength = itunesDurationNode == null ? item.MediaLength : itunesDurationNode.Value;
+                item.MediaLength = NormalizeDuration(item.MediaLength);
                 
                 item.MediaType = SafeGetAttribute(enclosureNode, "type");
 
@@ -162,6 +163,44 @@ namespace Podly.FeedParser.Xml
             var attribute = node.Attribute(attributeName);
 
             return attribute == null ? null : attribute.Value;
+        }
+
+
+        // Durations may be 00:00, 00:00:00, or a number of seconds. 
+        // Normalize to hh:mm:ss without leading 00: if less than an hour
+        private static string NormalizeDuration(string duration)
+        {
+            if (string.IsNullOrEmpty(duration)) return "00:00";
+            TimeSpan timeSpan;
+
+            // check if string contains a :
+            if (duration.Contains(":"))
+            {
+                if (TimeSpan.TryParse(duration, out timeSpan))
+                {
+                    return FormatTimeSpan(timeSpan);
+                }
+            }
+
+            if (int.TryParse(duration, out int seconds))
+            {
+                timeSpan = TimeSpan.FromSeconds(seconds);
+                return FormatTimeSpan(timeSpan);
+            }
+
+            return duration;
+        }
+
+        private static string FormatTimeSpan(TimeSpan timeSpan)
+        {
+            // If duration is less than an hour, display mm:ss
+            if (timeSpan.TotalHours < 1)
+            {
+                return timeSpan.ToString(@"mm\:ss");
+            }
+
+            // Otherwise, display hh:mm:ss
+            return timeSpan.ToString(@"hh\:mm\:ss");
         }
 
         #endregion
